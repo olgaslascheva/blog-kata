@@ -1,0 +1,46 @@
+.article-details {
+  background-color: white;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 938px;
+  margin-left: auto;
+  margin-right: auto;
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__row {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+  }
+  label {
+    padding-left: 2em;
+  }
+  &__description div {
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22px;
+  }
+  &__main {
+    color: rgba(0, 0, 0, 0.75);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  button {
+    height: 31px;
+    padding: 6px 18px;
+    border: 1px solid red;
+    color: red;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 14px;
+  }
+  button.article-details__edit {
+    border-color: #52C41A;
+    color: #52C41A;
+  }
+}

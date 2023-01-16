@@ -1,0 +1,75 @@
+.sign-up {
+  box-sizing: border-box;
+  background-color: white;
+  width: 384px;
+  padding: 48px 32px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  margin-top: 60px;
+  &__title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    margin-bottom: 21px;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    label {
+      display: flex;
+      flex-direction: column;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      margin-bottom: 12px;
+    }
+    label.sign-up__label-checkbox {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      margin-bottom: 0;
+      span {
+        margin-left: 5px;
+        color: #595959;
+      }
+    }
+  }
+  &__input {
+    box-sizing: border-box;
+    height: 40px;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 5px;
+    margin-top: 5px;
+  }
+  &__accept {
+    border-top: 1px solid #D9D9D9;
+    padding: 8px 0;
+    margin: 10px 0 21px;
+  }
+  &__submit {
+    color: white;
+    background-color: #1890FF;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  &__footer {
+    display: block;
+    font-size: 12px;
+    line-height: 20px;
+    color: #8C8C8C;
+    text-align: center;
+  }
+  &__link {
+    color: #1890FF;
+    text-decoration: none;
+  }
+}
