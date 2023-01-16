@@ -8,8 +8,14 @@ export const setCurrentArticle = (article) => ({
   article,
 });
 
-export const getArticles = (offset) => async (dispatch) => {
-  await fetch(`https://blog.kata.academy/api/articles?offset=${offset}`)
+export const getArticles = (offset, token) => async (dispatch) => {
+  await fetch(`https://blog.kata.academy/api/articles?offset=${offset}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Token ${token}`,
+    },
+  })
     .then((res) => {
       return res.json();
     })
@@ -23,8 +29,14 @@ export const getArticles = (offset) => async (dispatch) => {
     });
 };
 
-export const getArticle = (slug) => async (dispatch) => {
-  await fetch(`https://blog.kata.academy/api/articles/${slug}`)
+export const getArticle = (slug, token) => async (dispatch) => {
+  await fetch(`https://blog.kata.academy/api/articles/${slug}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Token ${token}`,
+    },
+  })
     .then((res) => {
       return res.json();
     })

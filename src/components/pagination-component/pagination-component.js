@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 import { Pagination } from 'antd';
 
 import { getArticles, setOffset } from '../../redux/articles-actions';
+import { getCookie } from '../../redux/user-actions';
 
 import classes from './pagination-component.module.scss';
 
 const PaginationComponent = ({ totalPage, offset, setOffset, getArticles }) => {
   const [current, setCurrent] = useState(1);
+  const token = getCookie('token');
 
   useEffect(() => {
-    getArticles(offset);
+    getArticles(offset, token);
   }, [offset, getArticles]);
 
   const onPaginationChange = (page) => {
@@ -41,7 +43,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setOffset: (num) => dispatch(setOffset(num)),
-    getArticles: (o) => dispatch(getArticles(o)),
+    getArticles: (offset, token) => dispatch(getArticles(offset, token)),
   };
 };
 

@@ -19,7 +19,7 @@ const ArticleDetails = ({ currentArticle, slug, getArticle, username, history })
   const token = getCookie('token');
 
   useEffect(() => {
-    getArticle(slug);
+    getArticle(slug, token);
   }, []);
 
   const confirm = () => {
@@ -27,20 +27,21 @@ const ArticleDetails = ({ currentArticle, slug, getArticle, username, history })
     history.push('/');
   };
 
-  const { title, favoritesCount, tagList, author, updatedAt, description, body } = currentArticle;
-  const [favorited, setFavorited] = useState(false);
-  const [likes, setLikes] = useState(favoritesCount);
+  const { title, favoritesCount, tagList, author, updatedAt, description, body, favorited } = currentArticle;
+
+  const [likesCount, setLikesCount] = useState(favoritesCount);
+  const [like, setLike] = useState(favorited);
 
   const onLikeChange = () => {
-    if (!favorited) {
+    if (!like) {
       favoriteArticle(slug, token).then(({ article: { favorited, favoritesCount } }) => {
-        setFavorited(favorited);
-        setLikes(favoritesCount);
+        setLike(favorited);
+        setLikesCount(favoritesCount);
       });
     } else {
       unFavoriteArticle(slug, token).then(({ article: { favorited, favoritesCount } }) => {
-        setFavorited(favorited);
-        setLikes(favoritesCount);
+        setLike(favorited);
+        setLikesCount(favoritesCount);
       });
     }
   };
@@ -60,10 +61,10 @@ const ArticleDetails = ({ currentArticle, slug, getArticle, username, history })
                       className={classesCard['article-list-item__input']}
                       disabled={!isLogin}
                       onChange={onLikeChange}
-                      checked={favorited}
+                      checked={like}
                     />
                     <span className={classesCard['article-list-item__box']}></span>
-                    {likes}
+                    {likesCount}
                   </label>
                 </div>
               </div>
@@ -122,7 +123,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getArticle: (slug) => dispatch(getArticle(slug)),
+    getArticle: (slug, token) => dispatch(getArticle(slug, token)),
   };
 };
 

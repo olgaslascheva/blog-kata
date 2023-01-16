@@ -152,7 +152,6 @@ export const favoriteArticle = async (slug, token) => {
     },
   })
     .then((res) => {
-      console.log(res);
       if (res.ok) return res.json();
     })
     .then((data) => {
@@ -170,7 +169,6 @@ export const unFavoriteArticle = async (slug, token) => {
     },
   })
     .then((res) => {
-      console.log(res);
       if (res.ok) return res.json();
     })
     .then((data) => {

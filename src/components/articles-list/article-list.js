@@ -5,12 +5,15 @@ import { Spin } from 'antd';
 import ArticleCard from '../article-card/article-card';
 import { getArticles } from '../../redux/articles-actions';
 import PaginationComponent from '../pagination-component/pagination-component';
+import { getCookie } from '../../redux/user-actions';
 
 import classes from './article-list.module.scss';
 
-const ArticleList = ({ articles, getArticles, loading, currentArticle }) => {
+const ArticleList = ({ articles, getArticles, loading, currentArticle, offset }) => {
+  const token = getCookie('token');
+
   useEffect(() => {
-    getArticles();
+    getArticles(offset, token);
   }, [getArticles]);
 
   return (
@@ -40,7 +43,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getArticles: () => dispatch(getArticles()),
+    getArticles: (offset, token) => dispatch(getArticles(offset, token)),
   };
 };
 

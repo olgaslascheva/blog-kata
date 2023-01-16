@@ -15,21 +15,21 @@ const ArticleCard = ({ articleData, isLogin }) => {
   const [ellipsis] = useState(true);
   const { Paragraph } = Typography;
   const token = getCookie('token');
-  const [favorited, setFavorited] = useState(false);
 
-  const { title, favoritesCount, tagList, author, updatedAt, description, slug } = articleData;
-  const [likes, setLikes] = useState(favoritesCount);
+  const { title, favoritesCount, tagList, author, updatedAt, description, slug, favorited } = articleData;
+  const [likesCount, setLikesCount] = useState(favoritesCount);
+  const [like, setLike] = useState(favorited);
 
   const onLikeChange = () => {
-    if (!favorited) {
+    if (!like) {
       favoriteArticle(slug, token).then(({ article: { favorited, favoritesCount } }) => {
-        setFavorited(favorited);
-        setLikes(favoritesCount);
+        setLike(favorited);
+        setLikesCount(favoritesCount);
       });
     } else {
       unFavoriteArticle(slug, token).then(({ article: { favorited, favoritesCount } }) => {
-        setFavorited(favorited);
-        setLikes(favoritesCount);
+        setLike(favorited);
+        setLikesCount(favoritesCount);
       });
     }
   };
@@ -49,10 +49,10 @@ const ArticleCard = ({ articleData, isLogin }) => {
                   className={classes['article-list-item__input']}
                   disabled={!isLogin}
                   onChange={onLikeChange}
-                  checked={favorited}
+                  checked={like}
                 />
                 <span className={classes['article-list-item__box']}></span>
-                {likes}
+                {likesCount}
               </label>
             </div>
           </div>
